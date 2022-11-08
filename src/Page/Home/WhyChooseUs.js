@@ -1,7 +1,6 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faDisplay, faGlobe, faPhoneFlip, faStarOfLife, faTrophy } from '@fortawesome/free-solid-svg-icons';
-import './Home_CSS/WhyChooseUs.css'
+import { faDisplay, faGlobe, faPhoneFlip, faTrophy } from '@fortawesome/free-solid-svg-icons';
 
 
 const WhyChooseUs = () => {
