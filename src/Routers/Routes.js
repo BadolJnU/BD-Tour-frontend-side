@@ -1,3 +1,5 @@
+import Login from "../Components/SharedComponents/Login/Login";
+import Register from "../Components/SharedComponents/Register/Register";
 import Main from "../Layout/Main";
 import AddService from "../Page/AddService/AddService";
 import Home from "../Page/Home/Home";
@@ -28,6 +30,14 @@ const routes = createBrowserRouter([
             {
                 path: '/service/:id',
                 element: <ServiceDetails></ServiceDetails>
+            },
+            {
+                path: '/login',
+                element: <Login></Login>
+            },
+            {
+                path: '/register',
+                element: <Register></Register>
             }
         ]
     }

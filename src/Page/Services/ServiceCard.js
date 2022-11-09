@@ -1,9 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import './ServiceCard.css'
+import './ServiceCard.css';
 
 const ServiceCard = ({service}) => {
-    const { name, photo, rating, price, description, _id } = service
+    const { name, photo, description, _id } = service
     return (
         <div className="row mt-5 container mx-auto">
 
