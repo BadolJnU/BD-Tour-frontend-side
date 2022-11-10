@@ -2,20 +2,14 @@ import React, { useContext, useEffect, useState } from 'react';
 import { useLoaderData } from 'react-router-dom';
 import { PhotoProvider, PhotoView } from 'react-photo-view';
 import 'react-photo-view/dist/react-photo-view.css';
-import ReactStars from 'react-stars'
+import ReactStars from 'react-stars';
 import { AuthContext } from '../../contextApi/AuthProvider/AuthProvider';
-//import Reviews from './Reviews/Reviews';
+import Reviews from './Reviews/Reviews';
 
 const ServiceDetails = () => {
-    // const [reviews, setReview] = useState({});
+    const [user_review, setReview] = useState([]);
     const { user } = useContext(AuthContext);
     const { name, photo, description, _id, rating, price } = useLoaderData();
-    //const url = `http://localhost:5000/reviews?service_id=${_id}`;
-    // useEffect(() => {
-    //     fetch(url)
-    //     .then(res => res.json())
-    //     .then(data => setReview(data))
-    // },[])
     const handleForm = (event) => {
         event.preventDefault();
         const form = event.target;
@@ -48,6 +42,13 @@ const ServiceDetails = () => {
         })
         .catch(error => console.error(error))
     }
+    const url = `http://localhost:5000/reviews?serviceId=${_id}`;
+    useEffect(() => {
+        fetch(url)
+        .then(res => res.json())
+        .then(data => setReview(data))
+    },[])
+    //console.log(user_review[0].review_text)
     return (
         <div>
             <div className='m-10'>
@@ -64,20 +65,19 @@ const ServiceDetails = () => {
                     <ReactStars
                         count={5}
                         size={24}
-                        value={3.5}
+                        value={rating}
                         color2={'#FFA500'} />
                 </div>
                 <h5 className='font-bold'>Package Price: <span className='font-semibold'>{price}</span></h5>
                 <p className='text-justify'>{description}</p>
             </div>
-            {/* <div>
+            <h2 className='text-center font-bold text-4xl'>Reviews</h2>
+            <div>
             {
-                reviews.map(review => <Reviews
-                key={review[0]._id}
-                review={review}
-                ></Reviews>)
+                user_review.map(review => <Reviews
+                review={review}></Reviews>)
             }
-            </div> */}
+            </div>
             <div className='m-24'>
                 {
                     user?.uid ?
