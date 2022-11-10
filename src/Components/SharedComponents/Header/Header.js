@@ -16,9 +16,11 @@ const Header = () => {
     const menuItem = <>
         <li className='font-semibold text-black'><Link to="/">Home</Link></li>
         <li className='font-semibold text-black'><Link to="/services">Services</Link></li>
+        <li className='font-semibold text-black'><Link to="/blog">Blog</Link></li>
     </>
     const authorized_menuItem = <>
         <li className='font-semibold text-black'><Link to="/addservice">Add Service</Link></li>
+        <li className='font-semibold text-black'><Link to="/myreviews">My Reviews</Link></li>
     </>
     return (
         <div className="navbar bg-base-100">

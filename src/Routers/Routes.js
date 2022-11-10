@@ -2,7 +2,9 @@ import Login from "../Components/SharedComponents/Login/Login";
 import Register from "../Components/SharedComponents/Register/Register";
 import Main from "../Layout/Main";
 import AddService from "../Page/AddService/AddService";
+import Blog from "../Page/Blog/Blog";
 import Home from "../Page/Home/Home";
+import MyReviews from "../Page/MyReviews/MyReviews";
 import Service from "../Page/Services/Service";
 import ServiceDetails from "../Page/Services/ServiceDetails";
 
@@ -39,6 +41,14 @@ const routes = createBrowserRouter([
             {
                 path: '/register',
                 element: <Register></Register>
+            },
+            {
+                path: '/blog',
+                element: <Blog></Blog>
+            },
+            {
+                path: '/myreviews',
+                element: <MyReviews></MyReviews>
             }
         ]
     }
