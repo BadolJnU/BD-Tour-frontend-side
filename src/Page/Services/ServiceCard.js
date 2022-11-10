@@ -18,7 +18,7 @@ const ServiceCard = ({service}) => {
                             {description.length > 200 ?
                                 <p>{description.slice(0, 200) + '....'} </p>
                                 : <p>details</p>}
-                            <Link to={`/service/${_id}`} className="preview-card__button">Read More</Link>
+                            <Link to={`/services/${_id}`} className="preview-card__button">Read More</Link>
                         </div>
                     </div>
 

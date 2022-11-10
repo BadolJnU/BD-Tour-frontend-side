@@ -2,6 +2,8 @@ import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../contextApi/AuthProvider/AuthProvider';
 import logo from './../../../logo.svg';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faUserAlt } from '@fortawesome/free-solid-svg-icons';
 
 const Header = () => {
     const { user, logOut } = useContext(AuthContext);
@@ -28,23 +30,23 @@ const Header = () => {
                     <ul tabIndex={0} className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
                         {
                             user?.uid ?
-                            <>
-                                {menuItem}
-                                {authorized_menuItem}
-                            </>
-                            :
-                            <>
-                                {menuItem}
-                            </>
+                                <>
+                                    {menuItem}
+                                    {authorized_menuItem}
+                                </>
+                                :
+                                <>
+                                    {menuItem}
+                                </>
                         }
                     </ul>
                 </div>
-                <Link to='/' className='font-bold px-5'><img src={logo} alt="Logo SVG file"/>BDTour</Link>
+                <Link to='/' className='font-bold px-5'><img src={logo} alt="Logo SVG file" />BDTour</Link>
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal p-0">
-                {
-                            user?.uid ?
+                    {
+                        user?.uid ?
                             <>
                                 {menuItem}
                                 {authorized_menuItem}
@@ -53,19 +55,23 @@ const Header = () => {
                             <>
                                 {menuItem}
                             </>
-                        }
+                    }
                 </ul>
             </div>
             <div className="navbar-end">
                 {
                     user?.uid ?
-                    <>
-                        <button className="btn btn-warning pr-5" onClick={handleLogOut}>Log Out</button>
-                    </>
-                    :
-                    <>
-                        <Link className='pr-5' to='/login'><button className="btn btn-warning">Log In</button></Link>
-                    </>
+                        <>
+                            {user?.photoURL ?
+                                <img src={user?.photoURL} title={user?.displayName} alt="user_profile" style={{ height: '30px' }} className="mx-3 rounded-full" />
+                                : <FontAwesomeIcon icon={faUserAlt} className="text-warning fa-2x icon mx-3 rounded" />
+                            }
+                            <button className="btn btn-warning pr-5" onClick={handleLogOut}>Log Out</button>
+                        </>
+                        :
+                        <>
+                            <Link className='pr-5' to='/login'><button className="btn btn-warning">Log In</button></Link>
+                        </>
                 }
             </div>
         </div>
