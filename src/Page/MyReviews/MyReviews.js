@@ -3,12 +3,15 @@ import { AuthContext } from '../../contextApi/AuthProvider/AuthProvider';
 import axios from 'axios';
 import ReviewsTable from './ReviewsTable';
 import { Link } from 'react-router-dom';
+import useTitle from '../../Hook/useTitle';
 
 
 
 const MyReviews = () => {
     const [reviews, setReview] = useState([]);
     const { user } = useContext(AuthContext);
+    useTitle('My Review');
+    
     //console.log(user.email)
     useEffect(() => {
         if (user.email === null) {

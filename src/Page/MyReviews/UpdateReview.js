@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { Navigate, useLoaderData, useNavigate } from 'react-router-dom';
+import useTitle from '../../Hook/useTitle';
 
 const UpdateReview = () => {
+    useTitle("Update Review");
     const storeReview = useLoaderData();
     const navigate = useNavigate();
     console.log(storeReview._id);

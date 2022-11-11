@@ -6,7 +6,10 @@ import ReactStars from 'react-stars';
 import { AuthContext } from '../../contextApi/AuthProvider/AuthProvider';
 import Reviews from './Reviews/Reviews';
 
+import useTitle from '../../Hook/useTitle'
+
 const ServiceDetails = () => {
+    useTitle("Service Details");
     const [user_review, setReview] = useState([]);
     const { user } = useContext(AuthContext);
     const { name, photo, description, _id, rating, price } = useLoaderData();
