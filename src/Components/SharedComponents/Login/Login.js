@@ -9,6 +9,7 @@ import useTitle from '../../../Hook/useTitle';
 const provider = new GoogleAuthProvider();
 
 const Login = () => {
+    const [loading, setLoading] = useState(true);
     useTitle("Login");
     const [error, setError] = useState('');
     const { signIn, googleLogin } = useContext(AuthContext);
@@ -24,6 +25,7 @@ const Login = () => {
         signIn(email, password)
         .then(result => {
             console.log("Working")
+            setLoading(false);
             const user = result.user;
             console.log(user)
             setError('');
@@ -33,16 +35,25 @@ const Login = () => {
         .catch(error => {
             console.error(error)
             setError(error.message);
+            setLoading(false);
         })
     }
 
     const handleGoogleLogin = () => {
         googleLogin(provider);
+        setLoading(false);
         navigate(from, {replace: true});
     }
     return (
         <div className="hero w-full">
-            <div className="hero-content grid md:grid-cols-2 flex-col lg:flex-row">
+            {
+                !loading ? <div class="flex justify-center items-center">
+                <div class="spinner-border animate-spin inline-block w-8 h-8 border-4 rounded-full" role="status">
+                  <span class="visually-hidden">Loading...</span>
+                </div>
+              </div>
+                : 
+                <div className="hero-content grid md:grid-cols-2 flex-col lg:flex-row">
                 <div className="text-center lg:text-left">
                     <img src={logInImage} alt='' />
                 </div>
@@ -76,6 +87,7 @@ const Login = () => {
                     </form>
                 </div>
             </div>
+            }
         </div>
     );
 };

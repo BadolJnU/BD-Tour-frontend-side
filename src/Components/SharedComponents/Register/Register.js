@@ -3,11 +3,14 @@ import React, { useContext, useState } from 'react';
 import { Link, Navigate, useLocation, useNavigate } from 'react-router-dom';
 import registerImage from '../../../Assets/registration.jpg'
 import { AuthContext } from '../../../contextApi/AuthProvider/AuthProvider';
+import useTitle from '../../../Hook/useTitle';
 
 const provider = new GoogleAuthProvider();
 
 const Register = () => {
+    useTitle("Register");
     const [error, setError] = useState('');
+    const [loading, setLoading] = useState(true);
     const {googleLogin, createUser, updateUserProfile} = useContext(AuthContext);
     const navigate = useNavigate();
     const location = useLocation();
@@ -25,6 +28,7 @@ const Register = () => {
             const user = result.user;
             console.log(user);
             setError('');
+            setLoading(false)
             handleUpdateUserProfile(name, photoURL);
             //handleEmailVerification();
             //alert('Please verify your email address.')
@@ -33,6 +37,7 @@ const Register = () => {
         .catch( e => {
             console.error(e);
             setError(e.message);
+            setLoading(false)
         });
     }
 
@@ -48,11 +53,19 @@ const Register = () => {
     }
     const handleGoogleLogin = () => {
         googleLogin(provider);
-        navigate(from, {replace: true});
+        setLoading(false);
+        navigate('/login');
     }
     return (
         <div className="hero w-full">
-            <div className="hero-content grid md:grid-cols-2 flex-col lg:flex-row">
+            {
+                !loading ? <div class="flex justify-center items-center">
+                <div class="spinner-border animate-spin inline-block w-8 h-8 border-4 rounded-full" role="status">
+                  <span class="visually-hidden">Loading...</span>
+                </div>
+              </div>
+                :
+                <div className="hero-content grid md:grid-cols-2 flex-col lg:flex-row">
                 <div className="text-center lg:text-left">
                     <img src={registerImage} alt='' />
                 </div>
@@ -94,6 +107,7 @@ const Register = () => {
                     </form>
                 </div>
             </div>
+            }
         </div>
     );
 };
