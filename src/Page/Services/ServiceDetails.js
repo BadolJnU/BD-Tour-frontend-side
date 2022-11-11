@@ -19,11 +19,13 @@ const ServiceDetails = () => {
         const user_photo = user.photoURL;
         const user_displayName = user.displayName;
         const serviceId = _id;
+        const serviceName = name;
         const review = {review_text, 
             review_rating, 
             user_email, 
             user_displayName, 
             user_photo,
+            serviceName,
             serviceId};
         console.log(review);
         fetch('http://localhost:5000/reviews', {
